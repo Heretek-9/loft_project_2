@@ -1,0 +1,11 @@
+AddDefaultCharset utf-8
+RewriteEngine On
+
+RewriteCond %{REQUEST_URI} \.(png|gif|jpe?g|js|css)$
+RewriteRule ^(.*) $1 [QSA,L]
+
+RewriteBase /
+
+RewriteCond %{REQUEST_FILENAME} !-f [OR]
+RewriteCond %{REQUEST_URI} \.(ini|php.*)$ 
+RewriteRule ^(.*) index.php [E=HTTP_AUTHORIZATION:%{HTTP:Authorization},L,QSA]
