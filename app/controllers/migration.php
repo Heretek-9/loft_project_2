@@ -39,6 +39,10 @@ class Migration
 	{
 		$faker = faker::create();
 
+		if (!is_dir(BASE_DIR.'files')) {
+			mkdir(BASE_DIR.'files');
+		}
+
 		for($i = 0; $i < 10; $i ++)
 		{
 			$user = new User;
@@ -61,6 +65,10 @@ class Migration
 		$userModel = new User;
 		$faker = faker::create();
 		$users = $userModel->where('id', '>', '0')->select('id')->get()->toArray();
+
+		if (!is_dir(BASE_DIR.'files')) {
+			mkdir(BASE_DIR.'files');
+		}
 
 		foreach ($users as $user) {
 			$file = new File;
