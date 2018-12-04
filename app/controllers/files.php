@@ -3,7 +3,7 @@
 namespace App\controllers;
 use \App\models\File;
 
-class Files extends \App\core\BaseController
+class Files extends \App\controllers\BaseController
 {
 	protected $defaultAction = 'showAll';
 

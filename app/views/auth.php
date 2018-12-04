@@ -4,4 +4,5 @@
 	Пароль: <input type="text" name="pass" required><br>
 	<input type="submit">
 </form><br>
-<?php echo $data['error'] ?>
+<?php echo $data['error'] ?><br>
+<a href="/users/create">Зарегистрировать нового пользователя</a>

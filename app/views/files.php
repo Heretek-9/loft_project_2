@@ -27,7 +27,7 @@
 		<?php foreach ($data as $file){ ?>
 			<tr>
 				<td><?php echo $file['id'] ?></td>
-				<td><img src="<?php echo '/files/'$file['name'] ?>"></td>
+				<td><img src="<?php echo '/files/'.$file['name'] ?>"></td>
 				<td><?php echo $file['date']; ?></td>
 			</tr>
 		<?php } ?>

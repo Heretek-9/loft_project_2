@@ -4,7 +4,7 @@ namespace App\controllers;
 use \App\models\File;
 use \App\models\User;
 
-class Admin extends \App\core\BaseController
+class Admin extends \App\controllers\BaseController
 {
 	protected $defaultAction = 'showAll';
 

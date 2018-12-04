@@ -1,6 +1,6 @@
 <?php
 
-namespace App\core;
+namespace App\controllers;
 
 abstract class BaseController
 {
@@ -9,7 +9,7 @@ abstract class BaseController
 
 	public function view($file, $data = array())
 	{
-		include VIEW.$file.'.php';
+		include APP_DIR.'views'.DS.$file.'.php';
 	}
 
 	public function default()

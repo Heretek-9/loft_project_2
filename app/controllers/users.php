@@ -3,7 +3,7 @@
 namespace App\controllers;
 use \App\models\User;
 
-class Users extends \App\core\BaseController
+class Users extends \App\controllers\BaseController
 {
 	protected $defaultAction = 'auth';
 
@@ -61,8 +61,8 @@ class Users extends \App\core\BaseController
 			if (move_uploaded_file($_FILES['photo']['tmp_name'], BASE_DIR.'files'.DS.$filename)) {
 				$update['photo'] = $filename;
 			}
-			$oldPhoto = $this->$model->where('id', $userId)->select('photo')->first()->toArray();
-			if ($oldPhoto['photo']) {
+			$oldPhoto = $this->$model->where('id', $userId)->select('photo')->get()->toArray();
+			if ($oldPhoto[0]['photo']) {
 				if (is_file(BASE_DIR.'files'.DS.$oldPhoto['photo'])) {
 					unlink(BASE_DIR.'files'.DS.$oldPhoto['photo']);
 				}
@@ -79,6 +79,7 @@ class Users extends \App\core\BaseController
 
 		if (!$_POST['admin_userid']) {
 			$_SESSION['update'] = 'done';
+			$_SESSION['admin'] = $update['admin'];
 			header('Location: /users/profile');
 		} else {
 			echo json_encode('ok');
@@ -89,8 +90,8 @@ class Users extends \App\core\BaseController
 	{
 		if ($_POST['email'] && $_POST['pass']) {
 			$error = 'Неправильная почта или пароль';
-			$user = $this->$model->where('email', $_POST['email'])->first()->toArray();
-			if ($user['password']) {
+			$user = $this->$model->where('email', $_POST['email'])->get()->toArray();
+			if ($user[0]['password']) {
 				if(password_verify($_POST['pass'], $user['password'])) {
 					$_SESSION['userId'] = $user['id'];
 					$_SESSION['admin'] = $user['admin'];

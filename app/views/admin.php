@@ -30,7 +30,9 @@
 				<td>
 					<a href="javascript:void(0);" class="editUser">Редактировать</a><br>
 					<a href="/admin/viewfiles?userid=<?php echo $user['id'] ?>">Посмотреть Файлы</a><br>
-					<a href="javascript:void(0);" class="deleteUser">Удалить</a><br>
+					<?php if ($_SESSION['userId'] != $user['id']){ ?>
+						<a href="javascript:void(0);" class="deleteUser">Удалить</a><br>
+					<?php } ?>
 				</td>
 			</tr>
 		<?php } ?>
