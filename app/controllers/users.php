@@ -92,9 +92,9 @@ class Users extends \App\controllers\BaseController
 			$error = 'Неправильная почта или пароль';
 			$user = $this->$model->where('email', $_POST['email'])->get()->toArray();
 			if ($user[0]['password']) {
-				if(password_verify($_POST['pass'], $user['password'])) {
-					$_SESSION['userId'] = $user['id'];
-					$_SESSION['admin'] = $user['admin'];
+				if(password_verify($_POST['pass'], $user[0]['password'])) {
+					$_SESSION['userId'] = $user[0]['id'];
+					$_SESSION['admin'] = $user[0]['admin'];
 					header('Location: /users/profile');
 					die;
 				}
